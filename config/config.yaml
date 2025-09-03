@@ -1,0 +1,47 @@
+# ===============================
+# Config file for RNA-seq / WES pipeline
+# Author: Shahana Arif
+#
+# Description:
+# This config file defines input sample information, 
+# reference genome files, and gene annotations required 
+# for the analysis. It will be used by Snakemake to 
+# download, organize, and process sequencing data.
+#
+# Sections:
+# 1. sample_table  -> metadata of sequencing runs (SRA Run Table)
+# 2. reference     -> human reference genome (hg38) from NCBI - 2025-08-19 14:15 
+# 3. annotation    -> gene annotation file (GTF) for hg38 - 2025-08-19 14:15 
+#
+# Notes:
+# - Ensure that "data/genome/" directory exists before running.
+# - The FTP links are used to fetch the genome and annotation
+#   if the files are not already present locally.
+# - fasta/gtf paths define the local file locations for pipeline use.
+# Once the refgenome's fasta path is registered in this file, you can refer to it with config['reference']['fasta'].
+# ===============================
+
+
+# Sample sheet: CSV metadata from NCBI (downloaded SraRunTable)
+sample_table: "config/SraRunTable.csv"
+
+
+# Reference genome hg38 (GRCh38) & annotations
+reference:
+  # FTP link to download genomic fasta file
+  ftp: "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.fna.gz"
+  # Local path to save fasta file
+  fasta: "data/genome/hg38.fasta"
+
+annotation:
+  # FTP link to download gene annotation (GTF)
+  ftp: "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.gtf.gz"
+  # Local path to save gtf file
+  gtf: "data/genome/hg38.gtf"
+
+#  Using dbSNP Build 157 (latest GRCh38 release; 2025-01-15)
+dbsnp:
+  ftp: "https://ftp.ncbi.nih.gov/snp/latest_release/VCF/GCF_000001405.40.gz"
+  vcf: "data/genome/hg38_dbsnp.vcf.gz"
+  index: "data/genome/hg38_dbsnp.vcf.gz.tbi"
+

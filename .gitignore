@@ -1,0 +1,38 @@
+# Ignore Snakemake working directory
+.snakemake/
+
+# Ignore pipeline outputs
+output/
+*.log
+*.err
+*.out
+*.tmp
+*.temp
+output/*.bam
+output/*.sam
+output/*.html
+output/*.txt
+output/*.fastq.gz
+output/*.fastq
+output/*.fasta
+output/*.zip
+output/*.gtf
+# Ignore raw data (optional if you keep big FASTQ/BAMs here)
+data/*.fastq
+data/*.fastq.gz
+data/*.fq
+data/*.fasta
+data/*.gtf
+data/*.vcf.gz
+data/*.vcf.gz.tbi
+data/*
+!data/.gitkeep
+
+
+# Ignore LibreOffice lock files
+.~lock.*
+Plan.odt
+
+# Ignore OS junk
+.DS_Store
+Thumbs.db
