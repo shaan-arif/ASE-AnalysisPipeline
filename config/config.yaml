@@ -1,5 +1,5 @@
 # ===============================
-# Config file for RNA-seq / WES pipeline
+# Config file for WES / RNA-seq pipeline
 # Author: Shahana Arif
 #
 # Description:
@@ -7,11 +7,13 @@
 # reference genome files, and gene annotations required 
 # for the analysis. It will be used by Snakemake to 
 # download, organize, and process sequencing data.
-#
+# If a change in reference is required, ensure to make 
+# the changes here accordingly.
 # Sections:
 # 1. sample_table  -> metadata of sequencing runs (SRA Run Table)
 # 2. reference     -> human reference genome (hg38) from NCBI - 2025-08-19 14:15 
 # 3. annotation    -> gene annotation file (GTF) for hg38 - 2025-08-19 14:15 
+# 4. known sites   -> known variants file (VCF) from the same reference build 
 #
 # Notes:
 # - Ensure that "data/genome/" directory exists before running.
@@ -32,16 +34,23 @@ reference:
   ftp: "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.fna.gz"
   # Local path to save fasta file
   fasta: "data/genome/hg38.fasta"
-
+  dict: "data/genome/hg38.dict"
 annotation:
   # FTP link to download gene annotation (GTF)
   ftp: "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_genomic.gtf.gz"
   # Local path to save gtf file
   gtf: "data/genome/hg38.gtf"
 
-#  Using dbSNP Build 157 (latest GRCh38 release; 2025-01-15)
 dbsnp:
+  # dbSNP build 157 (GRCh38)
   ftp: "https://ftp.ncbi.nih.gov/snp/latest_release/VCF/GCF_000001405.40.gz"
-  vcf: "data/genome/hg38_dbsnp.vcf.gz"
-  index: "data/genome/hg38_dbsnp.vcf.gz.tbi"
+  vcf: "data/genome/known_sites/hg38_dbsnp.vcf.gz"
+  index: "data/genome/known_sites/hg38_dbsnp.vcf.gz.tbi"
+  
+repeatmasker:
+  ftp: "https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/405/GCF_000001405.26_GRCh38/GCF_000001405.26_GRCh38_rm.out.gz" 
+  rm: "others/repeatmasker/hg38.rm.out.gz"
+     
+wasp:
+  path: "tools/WASP/mapping"
 

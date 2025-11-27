@@ -1,8 +1,11 @@
-name: fastqc_env
+name: qc
 channels:
   - bioconda
   - conda-forge
 dependencies:
   - fastqc
   - multiqc
+  - trimmomatic
+  - python=3.9
+
 

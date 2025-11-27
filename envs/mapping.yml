@@ -1,0 +1,21 @@
+name: mapping
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  # General tools
+  - samtools        # BAM/SAM processing
+  - picard          # deduplication, metrics
+  - bwa             # DNA mapping
+  - star            # RNA-seq mapping
+  # General utilities
+  - htslib
+  - pigz
+  - zlib
+  - python=3.10
+  - pysam
+  - numpy
+  - pandas
+  - tables
+ 
